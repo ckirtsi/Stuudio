@@ -1,28 +1,37 @@
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
+
 import javafx.stage.Stage;
+
+import java.time.Duration;
+import java.time.LocalTime;
+
 
 public class Arigato extends Application{
    GridPane taust;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         aken();
-        taimer();
-        lisad();
+        kell();
+        //lisad();
 
 
     }
 
-    private void taimer() {
+
+    public void kell() {
+        Stopwatch stopper = new Stopwatch();
+
+
     }
 
-    private void aken() {
+    public void aken() {
         taust = new GridPane();
         ImageView macan = new ImageView(new Image("http://files2.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=rd-2013-po-416-r4-modelimage-sideshot&lang=en&filetype=model&version=4686acb0-c3cb-11e3-8043-001a64c55f5c"));
         ImageView cayenne = new ImageView(new Image("http://files1.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=rd-2013-9pa-e2-2nd-di-modelimage-sideshot&lang=none&filetype=model&version=87d26f89-01f4-11e4-84a6-001a64c55f5c"));
@@ -33,9 +42,6 @@ public class Arigato extends Application{
         taust.add(cayenne,2,1);
         taust.add(panamera,3,1);
         taust.add(turbo,4,1);
-        taust.setGridLinesVisible(true);
-        //taust.getChildren().addAll(macan, cayenne, panamera, turbo);
-
         Stage stage =new Stage();
         stage.setScene(scene);
         stage.show();
