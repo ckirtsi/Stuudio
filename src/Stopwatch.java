@@ -11,33 +11,34 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Stopwatch {
+public class Stopwatch extends Application {
 
+    @Override
     public void start(Stage primaryStage) {
         Label stopwatch = new Label();
         BooleanProperty running = new SimpleBooleanProperty(false);
 
         AnimationTimer timer = new AnimationTimer() {
 
-            private LocalTime startTime;
+            private LocalTime startTime ;
 
+            @Override
             public void handle(long now) {
                 long elapsedSeconds = Duration.between(startTime, LocalTime.now()).getSeconds();
-                long minutes = elapsedSeconds / 60;
-                long seconds = elapsedSeconds % 60;
-                stopwatch.setText("Aeg: " + minutes + " minutid " + seconds + " sekundid");
+                long minutes = elapsedSeconds / 60 ;
+                long seconds = elapsedSeconds % 60 ;
+                stopwatch.setText("Time: "+minutes +" minutes "+seconds + " seconds");
             }
-
+            @Override
             public void start() {
                 running.set(true);
                 startTime = LocalTime.now();
                 super.start();
             }
-
+            @Override
             public void stop() {
                 running.set(false);
                 super.stop();
@@ -54,12 +55,15 @@ public class Stopwatch {
             }
         });
 
-        HBox root = new HBox(10, stopwatch, startStop);
+        VBox root = new VBox(10, stopwatch, startStop);
         root.setPadding(new Insets(24));
         root.setMinWidth(240);
-        root.setAlignment(Pos.BOTTOM_CENTER);
+        root.setAlignment(Pos.CENTER);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-}
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
