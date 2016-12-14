@@ -28,11 +28,10 @@ public class Stopwatch extends Application {
 
             @Override
             public void handle(long now) {
-                long elapsedSeconds = Duration.between(startTime, LocalTime.now()).getSeconds();
-                long minutes = elapsedSeconds / 60 ;
-                //long seconds = elapsedSeconds % 60 ;
-                double summa = (double)(minutes * 15) / 60;
-                stopwatch.setText("Aeg: "+minutes +" minutit. Tasuda " + summa + " eurot");
+                long aeg = Duration.between(startTime, LocalTime.now()).getSeconds();
+                long minutid = aeg / 60 ;
+                double summa = (double)(minutid * 15) / 60;
+                stopwatch.setText("Aeg: "+minutid +" minutit. Tasuda " + summa + " eurot");
             }
             @Override
             public void start() {
@@ -64,6 +63,8 @@ public class Stopwatch extends Application {
         root.setAlignment(Pos.CENTER);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        primaryStage.setTitle("Golf Experience");
+
     }
 
     public static void main(String[] args) {
