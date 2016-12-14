@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Stopwatch extends Application {
+    public Stopwatch(){}
 
     @Override
     public void start(Stage primaryStage) {
@@ -29,8 +30,9 @@ public class Stopwatch extends Application {
             public void handle(long now) {
                 long elapsedSeconds = Duration.between(startTime, LocalTime.now()).getSeconds();
                 long minutes = elapsedSeconds / 60 ;
-                long seconds = elapsedSeconds % 60 ;
-                stopwatch.setText("Time: "+minutes +" minutes "+seconds + " seconds");
+                //long seconds = elapsedSeconds % 60 ;
+                double summa = (double)(minutes * 15) / 60;
+                stopwatch.setText("Aeg: "+minutes +" minutit. Tasuda " + summa + " eurot");
             }
             @Override
             public void start() {
@@ -55,6 +57,7 @@ public class Stopwatch extends Application {
             }
         });
 
+
         VBox root = new VBox(10, stopwatch, startStop);
         root.setPadding(new Insets(24));
         root.setMinWidth(240);
@@ -66,4 +69,5 @@ public class Stopwatch extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

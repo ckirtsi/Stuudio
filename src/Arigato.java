@@ -1,5 +1,5 @@
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -8,7 +8,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
-public class Arigato extends Application {
+public class Arigato extends Application implements Runnable{
+    public Arigato(){}
     GridPane taust;
     GridPane tiitel;
     Stopwatch stopper;
@@ -29,18 +30,52 @@ public class Arigato extends Application {
         macan = new Button("Macan");
         macan.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(macan, 1, 2);
+        macan.setOnAction( e -> {
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run(){
+                    new Stopwatch().start(new Stage());
+                }
+            });
+        });
 
         cayenne = new Button("Cayenne");
         cayenne.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(cayenne, 2, 2);
+        cayenne.setOnAction(e -> {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    new Stopwatch().start(new Stage());
+                }
+            });
+        });
+
+
 
         panamera = new Button("Panamera");
         panamera.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(panamera, 3, 2);
+        panamera.setOnAction( e -> {
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run(){
+                    new Stopwatch().start(new Stage());
+                }
+            });
+        });
 
         turbo = new Button("911");
         turbo.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(turbo, 4, 2);
+        turbo.setOnAction( e -> {
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run(){
+                    new Stopwatch().start(new Stage());
+                }
+            });
+        });
 
 
 
@@ -51,11 +86,11 @@ public class Arigato extends Application {
         taust = new GridPane();
         taust.setHgap(10);
         taust.setVgap(5);
-        Scene scene = new Scene(taust,1650,350);
+        Scene scene = new Scene(taust,1650,275);
 
-        ImageView macan = new ImageView(new Image("http://files2.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=rd-2013-po-416-r4-modelimage-sideshot&lang=en&filetype=model&version=4686acb0-c3cb-11e3-8043-001a64c55f5c"));
-        ImageView cayenne = new ImageView(new Image("http://files1.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=rd-2013-9pa-e2-2nd-di-modelimage-sideshot&lang=none&filetype=model&version=87d26f89-01f4-11e4-84a6-001a64c55f5c"));
-        ImageView panamera = new ImageView(new Image("http://files.porsche.com/filestore/image/multimedia/none/970-g2-tu-modelimage-sideshot/model/1345c8fc-33ba-11e6-9225-0019999cd470;s25/porsche-model.png"));
+        ImageView macan = new ImageView(new Image("http://files2.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=po-416-gts-modelimage-sideshot&lang=none&filetype=model&version=d6fcae86-5239-11e5-8c32-0019999cd470&s"));
+        ImageView cayenne = new ImageView(new Image("http://files3.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=rd-2013-9pa-e2-2nd-tus-modelimage-sideshot&lang=none&filetype=model&version=777777e3-635e-11e4-99aa-001a64c55f5c"));
+        ImageView panamera = new ImageView(new Image("http://files.porsche.com/filestore/image/multimedia/none/970-g2-4s-modelimage-sideshot/model/a23b6da0-33b9-11e6-9225-0019999cd470;s25/porsche-model.png"));
         ImageView turbo = new ImageView(new Image("http://files3.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=991-2nd-tus-modelimage-sideshot&lang=none&filetype=model&version=6e5afd5c-7316-11e5-b99f-0019999cd470"));
 
         taust.add(macan, 1, 1);
@@ -68,9 +103,20 @@ public class Arigato extends Application {
         stage.setScene(scene);
         stage.show();
 
+        stage.setTitle("Golf Experience");
+        stage.setScene(scene);
+        stage.show();
+
     }
-    public static void main(String[] args) {
+    public static void main(String[] args){
         launch(args);
     }
 
+    // Starteri kaudu kutsumiseks
+    @Override
+    public void run(){
+        launch();
+    }
 }
+
+
