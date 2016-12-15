@@ -20,7 +20,7 @@ public class Stopwatch extends Application {
     @Override
     public void start(Stage primaryStage) {
         Label stopwatch = new Label();
-        BooleanProperty running = new SimpleBooleanProperty(false);
+        BooleanProperty tootab = new SimpleBooleanProperty(false);
 
         AnimationTimer timer = new AnimationTimer() {
 
@@ -35,21 +35,21 @@ public class Stopwatch extends Application {
             }
             @Override
             public void start() {
-                running.set(true);
+                tootab.set(true);
                 startTime = LocalTime.now();
                 super.start();
             }
             @Override
             public void stop() {
-                running.set(false);
+                tootab.set(false);
                 super.stop();
             }
         };
 
         Button startStop = new Button();
-        startStop.textProperty().bind(Bindings.when(running).then("Stop").otherwise("Start"));
+        startStop.textProperty().bind(Bindings.when(tootab).then("Stop").otherwise("Start"));
         startStop.setOnAction(e -> {
-            if (running.get()) {
+            if (tootab.get()) {
                 timer.stop();
             } else {
                 timer.start();
@@ -57,11 +57,11 @@ public class Stopwatch extends Application {
         });
 
 
-        VBox root = new VBox(10, stopwatch, startStop);
-        root.setPadding(new Insets(24));
-        root.setMinWidth(240);
-        root.setAlignment(Pos.CENTER);
-        primaryStage.setScene(new Scene(root));
+        VBox uusAken = new VBox(10, stopwatch, startStop);
+        uusAken.setPadding(new Insets(24));
+        uusAken.setMinWidth(240);
+        uusAken.setAlignment(Pos.CENTER);
+        primaryStage.setScene(new Scene(uusAken));
         primaryStage.show();
         primaryStage.setTitle("Golf Experience");
 
