@@ -15,7 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Stopwatch extends Application {
-    public Stopwatch(){}
+    public Stopwatch() {
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -24,21 +25,23 @@ public class Stopwatch extends Application {
 
         AnimationTimer timer = new AnimationTimer() {
 
-            private LocalTime startTime ;
+            private LocalTime startTime;
 
             @Override
             public void handle(long now) {
                 long aeg = Duration.between(startTime, LocalTime.now()).getSeconds();
-                long minutid = aeg / 60 ;
-                double summa = (double)(minutid * 15) / 60;
-                stopwatch.setText("Aeg: "+minutid +" minutit. Tasuda " + summa + " eurot");
+                long minutid = aeg / 60;
+                double summa = (double) (minutid * 15) / 60;
+                stopwatch.setText("Aeg: " + minutid + " minutit. Tasuda " + summa + " eurot");
             }
+
             @Override
             public void start() {
                 tootab.set(true);
                 startTime = LocalTime.now();
                 super.start();
             }
+
             @Override
             public void stop() {
                 tootab.set(false);

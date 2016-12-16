@@ -1,8 +1,7 @@
-/** Golf Experience simulaatorite aja programm
+/**
+ * Golf Experience simulaatorite aja programm
+ *
  * @author Carlos Kirtsi
- * @version 1
- * @param
- * @since
  */
 
 import javafx.application.Application;
@@ -15,11 +14,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
-public class Arigato extends Application implements Runnable{
-    public Arigato(){}
+public class Arigato extends Application implements Runnable {
+    public Arigato() {
+    }
+
     GridPane taust;
-    GridPane tiitel;
-    Stopwatch stopper;
     Button macan;
     Button cayenne;
     Button panamera;
@@ -37,10 +36,10 @@ public class Arigato extends Application implements Runnable{
         macan = new Button("Macan");
         macan.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(macan, 1, 2);
-        macan.setOnAction( e -> {
-            Platform.runLater(new Runnable(){
+        macan.setOnAction(e -> {
+            Platform.runLater(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     new Stopwatch().start(new Stage());
                 }
             });
@@ -62,10 +61,10 @@ public class Arigato extends Application implements Runnable{
         panamera = new Button("Panamera");
         panamera.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(panamera, 3, 2);
-        panamera.setOnAction( e -> {
-            Platform.runLater(new Runnable(){
+        panamera.setOnAction(e -> {
+            Platform.runLater(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     new Stopwatch().start(new Stage());
                 }
             });
@@ -74,15 +73,14 @@ public class Arigato extends Application implements Runnable{
         turbo = new Button("911");
         turbo.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         taust.add(turbo, 4, 2);
-        turbo.setOnAction( e -> {
-            Platform.runLater(new Runnable(){
+        turbo.setOnAction(e -> {
+            Platform.runLater(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     new Stopwatch().start(new Stage());
                 }
             });
         });
-
 
 
     }
@@ -93,7 +91,7 @@ public class Arigato extends Application implements Runnable{
         taust = new GridPane();
         taust.setHgap(10);
         taust.setVgap(5);
-        Scene scene = new Scene(taust,1250,250);
+        Scene scene = new Scene(taust, 1250, 250);
 
         //pildid
         ImageView macan = new ImageView(new Image("http://files2.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=po-416-gts-modelimage-sideshot&lang=none&filetype=model&version=d6fcae86-5239-11e5-8c32-0019999cd470&s"));
@@ -129,13 +127,14 @@ public class Arigato extends Application implements Runnable{
         stage.show();
 
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         launch(args);
     }
 
     // Starteri kaudu kutsumiseks
     @Override
-    public void run(){
+    public void run() {
         launch();
     }
 }
