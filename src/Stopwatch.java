@@ -23,6 +23,7 @@ public class Stopwatch extends Application {
         Label stopwatch = new Label();
         BooleanProperty tootab = new SimpleBooleanProperty(false);
 
+        //Siin sees on stopper
         AnimationTimer timer = new AnimationTimer() {
 
             private LocalTime startTime;
@@ -35,6 +36,7 @@ public class Stopwatch extends Application {
                 stopwatch.setText("Aeg: " + minutid + " minutit. Tasuda " + summa + " eurot");
             }
 
+            //Paneb aja jooksma
             @Override
             public void start() {
                 tootab.set(true);
@@ -42,6 +44,7 @@ public class Stopwatch extends Application {
                 super.start();
             }
 
+            //Peatab aja
             @Override
             public void stop() {
                 tootab.set(false);
@@ -49,6 +52,7 @@ public class Stopwatch extends Application {
             }
         };
 
+        //Nupp
         Button startStop = new Button();
         startStop.textProperty().bind(Bindings.when(tootab).then("Stop").otherwise("Start"));
         startStop.setOnAction(e -> {
@@ -60,6 +64,7 @@ public class Stopwatch extends Application {
         });
 
 
+        //Aken milles on stopper
         VBox uusAken = new VBox(10, stopwatch, startStop);
         uusAken.setPadding(new Insets(24));
         uusAken.setMinWidth(240);
