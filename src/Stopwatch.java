@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 public class Stopwatch extends Application {
     public Stopwatch() {
     }
+    long minutid;
+    double summa;
 
     @Override
     public void start(Stage primaryStage) {
@@ -31,11 +33,18 @@ public class Stopwatch extends Application {
             @Override
             public void handle(long now) {
                 long aeg = Duration.between(startTime, LocalTime.now()).getSeconds();
-                long minutid = aeg / 60;
-                double summa = (double) (minutid * 15) / 60;
+                minutid = aeg % 60;
                 stopwatch.setText("Aeg: " + minutid + " minutit. Tasuda " + summa + " eurot");
             }
+           /** public void varajane(){
+                if(LocalTime < 16){
+                    summa = (double) (minutid * 15) / 60;
+                }else {
+                    summa = (double) (minutid * 20) / 60;
+                }
 
+            }
+*/
             //Paneb aja jooksma
             @Override
             public void start() {

@@ -94,10 +94,10 @@ public class Arigato extends Application implements Runnable {
         Scene scene = new Scene(taust, 1250, 250);
 
         //pildid
-        ImageView macan = new ImageView(new Image("http://files2.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=po-416-gts-modelimage-sideshot&lang=none&filetype=model&version=d6fcae86-5239-11e5-8c32-0019999cd470&s"));
-        ImageView cayenne = new ImageView(new Image("http://files3.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=rd-2013-9pa-e2-2nd-tus-modelimage-sideshot&lang=none&filetype=model&version=777777e3-635e-11e4-99aa-001a64c55f5c"));
-        ImageView panamera = new ImageView(new Image("http://files.porsche.com/filestore/image/multimedia/none/970-g2-4s-modelimage-sideshot/model/a23b6da0-33b9-11e6-9225-0019999cd470;s25/porsche-model.png"));
-        ImageView turbo = new ImageView(new Image("http://files3.porsche.com/filestore.aspx/model.png?pool=multimedia&type=image&id=991-2nd-tus-modelimage-sideshot&lang=none&filetype=model&version=6e5afd5c-7316-11e5-b99f-0019999cd470"));
+        ImageView macan = new ImageView(new Image("Autod/macan.png"));
+        ImageView cayenne = new ImageView(new Image("Autod/cayenne.png"));
+        ImageView panamera = new ImageView(new Image("Autod/panamera.png"));
+        ImageView turbo = new ImageView(new Image("Autod/turbo.png"));
 
         //pildi suurused
         macan.setFitHeight(200);
