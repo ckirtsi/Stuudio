@@ -2,17 +2,24 @@ import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -23,6 +30,8 @@ public class Stopwatch extends Application {
     long minutid;
     double simulaator;
     int varakult;
+    String a;
+    double rent;
 
 
     @Override
@@ -33,8 +42,11 @@ public class Stopwatch extends Application {
         varakult = time.get(Calendar.HOUR);
 
 
+
+
         //Siin sees on stopper
         AnimationTimer timer = new AnimationTimer() {
+
 
 
             private LocalTime startTime;
@@ -44,7 +56,7 @@ public class Stopwatch extends Application {
             @Override
             public void handle(long now) {
                 long aeg = Duration.between(startTime, LocalTime.now()).getSeconds();
-                minutid = aeg % 60;
+                minutid = aeg / 60;
                 sekundid = aeg % 60;
 
 
@@ -55,10 +67,7 @@ public class Stopwatch extends Application {
                 }
                 DecimalFormat df = new DecimalFormat("0.00");
 
-
-
-
-                stopwatch.setText( "Aeg: " + minutid +":" + sekundid + " Tasuda " + df.format(simulaator) + " eurot");
+                stopwatch.setText("Aeg: " + minutid +":" + sekundid + " Tasuda " + df.format(simulaator + rent) + "€");
             }
 
             //Paneb aja jooksma
@@ -78,6 +87,8 @@ public class Stopwatch extends Application {
         };
 
 
+
+
         //Nupp
         Button startStop = new Button();
         startStop.textProperty().bind(Bindings.when(tootab).then("Stop").otherwise("Start"));
@@ -88,16 +99,31 @@ public class Stopwatch extends Application {
                 timer.start();
             }
         });
+        ChoiceBox cb1 = new ChoiceBox(FXCollections.observableArrayList(
+                "Varustuse rent: 5€", 1, 2, 3, 4)
+        );
+        cb1.setValue("Varustuse rent: 5€");
+        final List valik = cb1.getItems();
+
+        cb1.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (ObservableValue observable, Object oldValue, Object newValue) -> {
+                            rent = 5;
+                        });
+
+
 
 
         //Aken milles on stopper
-        VBox uusAken = new VBox(10, stopwatch, startStop);
+        VBox uusAken = new VBox(10, cb1, stopwatch, startStop);
         uusAken.setPadding(new Insets(24));
         uusAken.setMinWidth(240);
         uusAken.setAlignment(Pos.CENTER);
         primaryStage.setScene(new Scene(uusAken));
         primaryStage.show();
         primaryStage.setTitle("Golf Experience");
+
 
     }
 
