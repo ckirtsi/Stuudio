@@ -3,14 +3,12 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -19,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -30,7 +27,6 @@ public class Stopwatch extends Application {
     long minutid;
     double simulaator;
     int varakult;
-    String a;
     double rent;
 
 
@@ -100,10 +96,11 @@ public class Stopwatch extends Application {
             }
         });
         ChoiceBox cb1 = new ChoiceBox(FXCollections.observableArrayList(
-                "Varustuse rent: 5€", 1, 2, 3, 4)
+                "Varustuse rent: 5€", "Jah")
         );
         cb1.setValue("Varustuse rent: 5€");
         final List valik = cb1.getItems();
+
 
         cb1.getSelectionModel()
                 .selectedItemProperty()
@@ -111,7 +108,6 @@ public class Stopwatch extends Application {
                         (ObservableValue observable, Object oldValue, Object newValue) -> {
                             rent = 5;
                         });
-
 
 
 
