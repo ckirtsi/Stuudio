@@ -6,9 +6,11 @@ import java.util.List;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -95,6 +97,9 @@ public class Stopwatch extends Application {
                 timer.start();
             }
         });
+        Button sulge = new Button("Sulge");
+        sulge.setOnAction(event -> Platform.exit());
+
         ChoiceBox cb1 = new ChoiceBox(FXCollections.observableArrayList(
                 "Varustuse rent: 5€", "Jah")
         );
@@ -104,15 +109,19 @@ public class Stopwatch extends Application {
 
         cb1.getSelectionModel()
                 .selectedItemProperty()
-                .addListener(
-                        (ObservableValue observable, Object oldValue, Object newValue) -> {
-                            rent = 5;
-                        });
+                .addListener(new ChangeListener() {
+                                 @Override
+                                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                                     rent = 5;
+                                 }
+                             }
+                );
+
 
 
 
         //Aken milles on stopper
-        VBox uusAken = new VBox(10, cb1, stopwatch, startStop);
+        VBox uusAken = new VBox(10, cb1, stopwatch, startStop, sulge);
         uusAken.setPadding(new Insets(24));
         uusAken.setMinWidth(240);
         uusAken.setAlignment(Pos.CENTER);
