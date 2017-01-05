@@ -128,6 +128,7 @@ public class Arigato extends Application implements Runnable {
 
     }
 
+
     public static void main(String[] args) {
         launch(args);
     }

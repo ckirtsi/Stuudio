@@ -1,5 +1,7 @@
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.Calendar;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -17,34 +19,48 @@ import javafx.stage.Stage;
 public class Stopwatch extends Application {
     public Stopwatch() {
     }
+    long sekundid;
     long minutid;
-    double summa;
+    double simulaator;
+    int varakult;
+
 
     @Override
     public void start(Stage primaryStage) {
         Label stopwatch = new Label();
         BooleanProperty tootab = new SimpleBooleanProperty(false);
+        Calendar time = Calendar.getInstance();
+        varakult = time.get(Calendar.HOUR);
+
 
         //Siin sees on stopper
         AnimationTimer timer = new AnimationTimer() {
 
+
             private LocalTime startTime;
+
+
 
             @Override
             public void handle(long now) {
                 long aeg = Duration.between(startTime, LocalTime.now()).getSeconds();
                 minutid = aeg % 60;
-                stopwatch.setText("Aeg: " + minutid + " minutit. Tasuda " + summa + " eurot");
-            }
-           /** public void varajane(){
-                if(LocalTime < 16){
-                    summa = (double) (minutid * 15) / 60;
-                }else {
-                    summa = (double) (minutid * 20) / 60;
-                }
+                sekundid = aeg % 60;
 
+
+                if (varakult < 16 && varakult >= 9){
+                    simulaator = (double) (minutid * 15) / 60;
+                } else {
+                    simulaator = (double) (minutid * 20) / 60;
+                }
+                DecimalFormat df = new DecimalFormat("0.00");
+
+
+
+
+                stopwatch.setText( "Aeg: " + minutid +":" + sekundid + " Tasuda " + df.format(simulaator) + " eurot");
             }
-*/
+
             //Paneb aja jooksma
             @Override
             public void start() {
@@ -60,6 +76,7 @@ public class Stopwatch extends Application {
                 super.stop();
             }
         };
+
 
         //Nupp
         Button startStop = new Button();
